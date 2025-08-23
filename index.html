@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="FR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COCCA-COLLA</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+      html {
+        scroll-behavior: smooth;
+      }
+      a {
+        text-decoration: none !important;
+      }
+      li {
+        list-style: none !important;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        width: 100vw;
+        height: 100vh;
+      }
+      section {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        padding: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #161616;
+        font-size: 1.6rem;
+      }
+      section .circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #e51e2a;
+        transition: 1.5s ease;
+        clip-path: circle(30% at right -20%);
+      }
+      section .circle-big {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #e51e2a;
+        clip-path: circle(70% at right -20%);
+      }
+      header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 40px 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logoo {
+        width: fit-content;
+        height: fit-content;
+        padding-inline: 10px;
+        padding-top: 15px;
+        display: inline-block;
+        border-radius: 10px;
+        box-shadow: 0 0 40px 1px rgba(246, 25, 25, 0.909);
+        /* animation: pulse 2s infinite; */
+        transition: 1s;
+        overflow: hidden;
+        position: relative;
+        filter: blur(2px);
+      }
+
+      .logoo::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 50%;
+        height: 100%;
+        background: rgba(246, 25, 25, 0.541);
+        filter: blur(0px);
+        transition: 400ms;
+        transform: skewX(45deg) translateX(calc(200% + 50%));
+      }
+
+      .logoo:hover::before {
+        transform: skewX(45deg) translateX(calc(200% * -1 - 50%));
+      }
+
+      .logoo:hover {
+        filter: blur(0px);
+        box-shadow: 0 0 60px 3px rgba(246, 25, 25, 0.909);
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      header .logo {
+        position: relative;
+        width: 200px;
+      }
+      header .navigation {
+        position: relative;
+        display: flex;
+      }
+      header .navigation li {
+        list-style: none;
+      }
+      header .navigation li a {
+        display: inline-block;
+        color: #dfd8d8;
+        font-weight: 500;
+        margin-left: 40px;
+        transition: 1s;
+        padding: 10px;
+      }
+      header .navigation li a:hover {
+        /* border-radius: 4px 4px 14px 14px;
+        border: 3px solid rgba(255, 255, 255, 0.274);
+        border-top: none; */
+        transform: translateY(-5px);
+        /* box-shadow:0 0 10px 1px rgba(255, 255, 255, 0.274); */
+      }
+
+      .content {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .content .textBox {
+        position: relative;
+        max-width: 600px;
+        margin-right: 20px;
+      }
+      .content .textBox h2 {
+        color: #fff;
+        font-size: 3em;
+        margin-bottom: 10px;
+        line-height: 1.4em;
+        font-weight: 700;
+      }
+
+      .content .textBox p {
+        color: #fff;
+      }
+      .content .textBox a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 8px 20px;
+        background: #e51e2a;
+        border-radius: 40px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: #fff;
+        box-shadow: #000000ec 5px 10px 20px 1px;
+        transition: 0.7s ease;
+      }
+      .content .textBox a:hover {
+        background: #e8e6e6f7;
+        color: #e51e2a;
+        transform: translateY(-5px);
+        box-shadow: #98959544 0px 0px 20px 1px;
+      }
+
+      .sci {
+        position: absolute;
+        bottom: 40px;
+        left: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .sci li a {
+        display: inline-block;
+        margin-left: 15px;
+        background: #222;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        transition: 0.2s ease-in-out;
+      }
+
+      .sci li a:hover {
+        background: #e51e2a;
+        transform: translateY(-10px);
+      }
+      .sci li a img {
+        filter: invert(1);
+        transform: scale(0.5);
+      }
+
+      .swiper {
+        width: 600px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+
+      .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 300px;
+        height: 460px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+      }
+
+      .content .imgBox {
+        width: 500px;
+        display: flex;
+        justify-self: flex-end;
+      }
+      .content .imgBox img {
+        max-width: 150px;
+      }
+
+      .swiper-slide img {
+        position: absolute;
+        bottom: 0;
+        max-height: 100%;
+      }
+
+      .swiper-3d .swiper-slide-shadow-right,
+      .swiper-3d .swiper-slide-shadow-left {
+        background-image: none;
+      }
+
+      .swiper-slide-active {
+        animation: pulse 2s infinite;
+      }
+
+      @media screen and (max-width: 768px) {
+        section {
+          padding: 50px;
+        }
+        header {
+          padding: 20px 50px;
+        }
+        header .logo {
+          width: 100px;
+        }
+        .content {
+          flex-direction: column;
+          align-items: center;
+          margin-block: 30px;
+        }
+        .content .textBox {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        .content .imgBox {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        header .navigation {
+          display: none;
+        }
+        header .navigation.active {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 20px;
+          align-items: center;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #e51e2a;
+          z-index: 10;
+        }
+
+        header .navigation li a {
+          font-size: 1.3em;
+          font-weight: 300;
+          margin: 10px 0;
+        }
+        .toggle {
+          position: relative;
+          width: 30px;
+          height: 30px;
+          background: url("./assestss/menu.png") no-repeat center center;
+          background-size: 30px;
+          cursor: pointer;
+          z-index: 1000;
+        }
+
+        .toggle.active {
+          position: fixed;
+          right: 40px;
+          background: url("./assestss/close.png") no-repeat center center;
+          background-size: 25px;
+        }
+      }
+
+      @media screen and (min-width: 769px) and (max-width: 1024px) {
+        section {
+          padding: 60px;
+          flex-direction: column;
+          align-items: center;
+          font-size: 1.2rem;
+        }
+        header {
+          position: relative;
+          padding: 20px 40px;
+          flex-direction: row;
+          align-items: center;
+        }
+        header .logo {
+          width: 200px;
+            /* margin-right: 70px; */
+        }
+        .content {
+          flex-direction: column;
+          align-items: center;
+          margin-block: 20px;
+        }
+        .content .textBox {
+          text-align: center;
+          margin-bottom: 20px;
+          max-width: 90vw;
+        }
+        .content .imgBox {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+        .swiper {
+          width: 90vw;
+          max-width: 500px;
+          padding-top: 30px;
+          padding-bottom: 30px;
+        }
+        .swiper-slide {
+          width: 220px;
+          height: 340px;
+        }
+        .sci {
+          position: static;
+          margin-top: 20px;
+          left: auto;
+          bottom: auto;
+          justify-content: center;
+        }
+        header .navigation {
+          display: flex !important;
+          flex-direction: row;
+          gap: 20px;
+          align-items: center;
+          position: static;
+          background: none;
+          width: auto;
+          height: auto;
+        }
+        header .navigation li a {
+          font-size: 1em;
+          margin: 0 10px;
+          padding: 8px;
+        }
+        .toggle {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="circle"></div>
+      <header>
+        <div class="logoo">
+          <a href="#"><img src="./assestss/logo (1).png" class="logo" /></a>
+        </div>
+        <div class="toggle"></div>
+        <ul class="navigation">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">What's New</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </header>
+      <div class="content">
+        <div class="textBox">
+          <h2>Taste the Feeling</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
+            temporibus itaque expedita qui obcaecati placeat officia voluptates
+            modi officiis rerum. Cum saepe enim laboriosam ipsa nobis,
+            recusandae
+          </p>
+          <a href="#">Learn More</a>
+        </div>
+        <div class="imgBox">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="./assestss/cocacola1.png" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./assestss/cocacola2.png" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./assestss/cocacola3.png" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./assestss/cocacola4.png" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./assestss/cocacola5.png" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./assestss/cocacola6.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="sci">
+        <li>
+          <a href="#"><img src="./assestss/facebook.png" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="./assestss/instagram.png" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="./assestss/twitter.png" alt="" /></a>
+        </li>
+      </ul>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      let swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 600,
+          modifier: 1,
+          slideShadows: true,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        loop: true,
+      });
+
+      const menu = document.querySelector(".toggle");
+      const navigation = document.querySelector(".navigation");
+      menu.addEventListener("click", toggleMenu);
+      function toggleMenu() {
+        menu.classList.toggle("active");
+        navigation.classList.toggle("active");
+      }
+      toggleMenu();
+
+      let swippers = document.querySelectorAll(".swiper-slide");
+      let TabSwippers = Array.from(swippers);
+      // console.log(swippers);
+
+      let activeIndx = TabSwippers.findIndex((element) => {
+        element.classList.contains("swiper-slide-active");
+      });
+
+      let activeSlidee = TabSwippers[activeIndx];
+
+      console.log(activeIndx);
+      console.log(activeSlidee);
+
+      TabSwippers.forEach((slide, index) => {
+        if (index === activeIndx) {
+          slide.classList.add("swiper-slide-active");
+        }
+      });
+
+      let activeSlide = document.querySelector(".swiper-slide-active");
+      console.log(activeSlide);
+
+      document.querySelector(".circle").addEventListener("click", () => {
+        document.querySelector(".circle").classList.toggle("circle-big");
+      });
+    </script>
+  </body>
+</html>
